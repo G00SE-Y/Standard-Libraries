@@ -1,2 +1,3 @@
-/string.h_lib/output
 *.exe
+/string.h_lib/output
+/string.h_lib/.vscode
