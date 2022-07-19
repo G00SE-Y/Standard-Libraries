@@ -44,3 +44,19 @@ void* memchr(const void* str, int c, size_t n) {
     return null;
 
 }
+
+// Compares the first n bytes of str1 and str2.
+int memcmp(const void *str1, const void *str2, size_t n) {
+    
+    int diff = 0;
+    char x,y;
+
+    for(int i = 0; i<n; i++) {
+        x = *(char*)(str1 + i);
+        y = *(char*)(str2 + i);
+
+        if(x == 0 || y == 0) return diff;
+
+        diff += x - y; 
+    }
+}
