@@ -55,8 +55,10 @@ int memcmp(const void *str1, const void *str2, size_t n) {
         x = *(char*)(str1 + i);
         y = *(char*)(str2 + i);
 
-        if(x == 0 || y == 0) return diff;
+        if(x == 0 || y == 0) return ((x==0)? -1 : 1);
 
         diff += x - y; 
     }
+
+    return ((diff>0) ? 1 : -1);
 }

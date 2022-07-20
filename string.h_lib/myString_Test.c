@@ -23,6 +23,8 @@ int main() {
     fprintf(f, "%d\n", memcmp(alphabet, alphabet, 26));
     fprintf(f, "%d\n", memcmp(alphabet, zeros, 26));
     fprintf(f, "%d\n", memcmp(alphabet, revalpha, 26));
+    fprintf(f, "%d\n", memcmp(alphabet, "a", 26));
+    fprintf(f, "%d\n", memcmp("z", revalpha, 26));
 
     fclose(f);
     return 0;

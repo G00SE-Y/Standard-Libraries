@@ -17,11 +17,11 @@ RESULTS := string_test_results.txt
 
 # compile my string test
 my_string: $(MY_LIB_FILES)
-	@$(CC) -o $(EXE_DIR)$(MY_EXE_FILE) $(MY_LIB_FILES)
+	@$(CC) -Wall -Wextra -o $(EXE_DIR)$(MY_EXE_FILE) $(MY_LIB_FILES)
 
 # compile std string test
 std_string: $(STD_LIB_FILES)
-	@$(CC) -o $(EXE_DIR)$(STD_EXE_FILE) $(STD_LIB_FILES)
+	@$(CC) -Wall -Wextra -o $(EXE_DIR)$(STD_EXE_FILE) $(STD_LIB_FILES)
 
 # create directories
 make_dirs:
