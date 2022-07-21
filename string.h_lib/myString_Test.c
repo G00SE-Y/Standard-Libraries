@@ -63,6 +63,31 @@ int main() {
     dma = (char *)strcat(dma, byte25);
     fprintf(f, "\t%s\n", dma);
 
+    free(dma);
+
+
+    // tests for strncat
+    fprintf(f, "\nstrcat\n");
+
+    dma = (char *)malloc((8 + 6 + 4 + 2) + 1);
+    *dma = 0;
+
+    dma = (char *)strncat(dma, byte69, 8);
+    fprintf(f, "\t%s\n", dma);
+
+    dma = (char *)strncat(dma, byte420, 6);
+    fprintf(f, "\t%s\n", dma);
+
+    dma = (char *)strncat(dma, byte87, 4);
+    fprintf(f, "\t%s\n", dma);
+
+    dma = (char *)strncat(dma, byte25, 2);
+    fprintf(f, "\t%s\n", dma);
+
+    free(dma);
+
+    
+
     fclose(f);
     return 0;
 }

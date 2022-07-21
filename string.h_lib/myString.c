@@ -11,7 +11,7 @@ void *memcpy(void* dest, const void* src, size_t n); // Copies n characters from
 void *memmove(void* dest, const void* src, size_t n); // Another function to copy n characters from str2 to str1.
 void *memset(void* str, int c, size_t n); // Copies the character c (an unsigned char) to the first n characters of the string pointed to, by the argument str.
 char *strcat(char* dest, const char* src); // Appends the string pointed to, by src to the end of the string pointed to by dest.
-// char *strncat(char* dest, const char* src, size_t n); // Appends the string pointed to, by src to the end of the string pointed to, by dest up to n characters long.
+char *strncat(char* dest, const char* src, size_t n); // Appends the string pointed to, by src to the end of the string pointed to, by dest up to n characters long.
 // char *strchr(const char* str, int c); // Searches for the first occurrence of the character c (an unsigned char) in the string pointed to, by the argument str.
 // int strcmp(const char* str1, const char* str2); // Compares the string pointed to, by str1 to the string pointed to by str2.
 // int strncmp(const char* str1, const char* str2, size_t n); // Compares at most the first n bytes of str1 and str2.
@@ -100,6 +100,26 @@ char *strcat(char *dest, const char *src) {
 
     for ( ; *(char *)(src + i) != 0; i++) {
         *dest = *(char*)(src + i);
+        dest++;
+    }
+
+    *dest = 0;
+
+    return tmp;
+}
+
+// Appends the string pointed to, by src to the end of the string pointed to, by dest up to n characters long.
+char *strncat(char *dest, const char *src, size_t n) {
+    
+    char *tmp = dest;
+    size_t i = 0;
+
+    while (*dest != 0) {
+        ++dest;
+    }
+
+    for (; *(char *)(src + i) != 0 && i < n; i++) {
+        *dest = *(char *)(src + i);
         dest++;
     }
 
