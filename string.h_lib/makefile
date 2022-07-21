@@ -34,7 +34,7 @@ build: make_dirs my_string std_string
 	@./$(EXE_DIR)$(STD_EXE_FILE)
 	@./$(EXE_DIR)$(MY_EXE_FILE)
 	@echo "CHECKING DIFF"
-	@diff $(OUT_DIR)$(STD_OUTPUT_FILE) $(OUT_DIR)$(MY_OUTPUT_FILE) > $(RESULTS)
+	@-diff $(OUT_DIR)$(STD_OUTPUT_FILE) $(OUT_DIR)$(MY_OUTPUT_FILE) > $(RESULTS)
 	@echo "END OF STRING.H TESTS"
 	@cat $(RESULTS)
 
