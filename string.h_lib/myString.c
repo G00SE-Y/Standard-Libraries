@@ -62,3 +62,17 @@ int memcmp(const void *str1, const void *str2, size_t n) {
 
     return ((diff>0) ? 1 : -1);
 }
+
+// Copies n characters from src to dest.
+void *memcpy(void *dest, const void *src, size_t n) {
+
+    char buf = 0;
+
+    for(size_t i = 0; i < n; i++) {
+        buf = *(char*)(src + i);
+        *(char*)(dest + i) = 0x00000000;
+        *(char*)(dest + i) = *(char*)(dest + i) | buf;
+    }
+
+    return dest;
+}

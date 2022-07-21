@@ -12,7 +12,8 @@ int main() {
 
     const char alphabet[] = "abcdefghijklmnopqrstuvwxyz\0"; // test string
     const char revalpha[] = "zyxwvutsrqponmlkjihgfedcba\0";
-    const char zeros[] = "00000000000000000000000000";
+    const char zeros[] = "00000000000000000000000000\0";
+    char test[] = "00000000000000000000000000\0";
 
     // tests for memchr
     fprintf(f, "%s\n", (char*)memchr(alphabet, 'a', 26));
@@ -25,6 +26,11 @@ int main() {
     fprintf(f, "%d\n", memcmp(alphabet, revalpha, 26));
     fprintf(f, "%d\n", memcmp(alphabet, "a", 26));
     fprintf(f, "%d\n", memcmp("z", revalpha, 26));
+
+    // tests for memcpy
+    fprintf(f, "%s\n", (char *)memcpy(test, alphabet, 26));
+    fprintf(f, "%s\n", (char *)memcpy(test, revalpha, 26));
+    fprintf(f, "%s\n", (char *)memcpy(test, zeros, 26));
 
     fclose(f);
     return 0;
