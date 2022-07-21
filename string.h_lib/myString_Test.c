@@ -47,13 +47,21 @@ int main() {
     fprintf(f, "\t%s\n", (char *)memmove(test, zeros, 26));
 
     // tests for strcat
-    char* dma = (char*)malloc((4 * 8) + 1);
-    dma[0] = 0;
     fprintf(f, "\nstrcat\n");
-    fprintf(f, "\t%s\n", dma = (char *)strcpy(dma, byte69));
-    fprintf(f, "\t%s\n", dma = (char *)strcpy(dma, byte420));
-    fprintf(f, "\t%s\n", dma = (char *)strcpy(dma, byte87));
-    fprintf(f, "\t%s\n", dma = (char *)strcpy(dma, byte25));
+    char* dma = (char*)malloc((4 * 8) + 1);
+    *dma = 0;
+
+    dma = (char *)strcat(dma, byte69);
+    fprintf(f, "\t%s\n", dma);
+
+    dma = (char *)strcat(dma, byte420);
+    fprintf(f, "\t%s\n", dma);
+
+    dma = (char *)strcat(dma, byte87);
+    fprintf(f, "\t%s\n", dma);
+
+    dma = (char *)strcat(dma, byte25);
+    fprintf(f, "\t%s\n", dma);
 
     fclose(f);
     return 0;

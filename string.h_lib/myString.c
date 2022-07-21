@@ -93,15 +93,17 @@ void *memmove(void *dest, const void *src, size_t n) {
 // Appends the string pointed to, by src to the end of the string pointed to by dest.
 char *strcat(char *dest, const char *src) {
 
-    size_t i = 0, j = 0;
+    char* tmp = dest;
+    size_t i = 0;
 
-    while(dest[j] != 0) { j++; }
+    while(*dest != 0) { ++dest; }
 
-    for ( ; *(char *)(src + i) != 0; i++, j++) {
-        dest[j] = *(char*)(src + i);
+    for ( ; *(char *)(src + i) != 0; i++) {
+        *dest = *(char*)(src + i);
+        dest++;
     }
 
-    dest[j] = 0;
+    *dest = 0;
 
-    return dest;
+    return tmp;
 }
