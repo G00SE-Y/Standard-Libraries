@@ -34,7 +34,7 @@ void* memchr(const void* str, int c, size_t n) {
 
     char x = -1;
     char* loc = (char*) str;
-    for (int i = 0; (x != 0) && (i < n); i++, loc++) {
+    for (size_t i = 0; (x != 0) && (i < n); i++, loc++) {
         x = *loc;
 
         if(x == c) {
@@ -51,7 +51,7 @@ int memcmp(const void *str1, const void *str2, size_t n) {
     int diff = 0;
     char x,y;
 
-    for(int i = 0; i<n; i++) {
+    for(size_t i = 0; i<n; i++) {
         x = *(char*)(str1 + i);
         y = *(char*)(str2 + i);
 
