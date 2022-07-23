@@ -12,7 +12,7 @@ void *memmove(void* dest, const void* src, size_t n); // Another function to cop
 void *memset(void* str, int c, size_t n); // Copies the character c (an unsigned char) to the first n characters of the string pointed to, by the argument str.
 char *strcat(char* dest, const char* src); // Appends the string pointed to, by src to the end of the string pointed to by dest.
 char *strncat(char* dest, const char* src, size_t n); // Appends the string pointed to, by src to the end of the string pointed to, by dest up to n characters long.
-// char *strchr(const char* str, int c); // Searches for the first occurrence of the character c (an unsigned char) in the string pointed to, by the argument str.
+char *strchr(const char* str, int c); // Searches for the first occurrence of the character c (an unsigned char) in the string pointed to, by the argument str.
 // int strcmp(const char* str1, const char* str2); // Compares the string pointed to, by str1 to the string pointed to by str2.
 // int strncmp(const char* str1, const char* str2, size_t n); // Compares at most the first n bytes of str1 and str2.
 // int strcoll(const char* str1, const char* str2); // Compares string str1 to str2. The result is dependent on the LC_COLLATE setting of the location.
@@ -34,7 +34,7 @@ void* memchr(const void* str, int c, size_t n) {
 
     char x = -1;
     char* loc = (char*) str;
-    for (size_t i = 0; (x != 0) && (i < n); i++, loc++) {
+    for (size_t i = 0; (i < n); i++, loc++) {
         x = *loc;
 
         if(x == c) {
@@ -110,7 +110,7 @@ char *strcat(char *dest, const char *src) {
 
 // Appends the string pointed to, by src to the end of the string pointed to, by dest up to n characters long.
 char *strncat(char *dest, const char *src, size_t n) {
-    
+
     char *tmp = dest;
     size_t i = 0;
 
@@ -126,4 +126,20 @@ char *strncat(char *dest, const char *src, size_t n) {
     *dest = 0;
 
     return tmp;
+}
+
+// Searches for the first occurrence of the character c (an unsigned char) in the string pointed to, by the argument str.
+char *strchr(const char *str, int c) {
+
+    char x = -1;
+    char *loc = (char *)str;
+
+    for (size_t i = 0; (x != 0); i++, loc++) {
+        x = *loc;
+
+        if (x == c) {
+            return loc;
+        }
+    }
+    return null;
 }

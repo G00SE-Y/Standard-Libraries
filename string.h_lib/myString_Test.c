@@ -11,9 +11,12 @@ int main() {
         return 1;
     }
 
-    const char alphabet[] = "abcdefghijklmnopqrstuvwxyz\0"; // test string
+    const char alphabet[] = "abcdefghijklmnopqrstuvwxyz\0";    // test string
+    const char evil_alphabet[] = "abcdefghijklmnopqrstuvwxyz\0a01"; // test string with no null char
     const char revalpha[] = "zyxwvutsrqponmlkjihgfedcba\0";
+    const char evil_revalpha[] = "zyxwvutsrqponmlkjihgfedcba";
     const char zeros[] = "00000000000000000000000000\0";
+    const char evil_zeros[] = "00000000000000000000000000";
     const char byte69[] = "00100101";
     const char byte420[] = "11010100";
     const char byte87[] = "01010111";
@@ -25,6 +28,10 @@ int main() {
     fprintf(f, "\t%s\n", (char*)memchr(alphabet, 'a', 26));
     fprintf(f, "\t%s\n", (char*)memchr(alphabet, 'm', 26));
     fprintf(f, "\t%s\n", (char*)memchr(alphabet, 'z', 26));
+    fprintf(f, "\t%s\n", (char*)memchr(evil_alphabet, 'a', 26));
+    fprintf(f, "\t%s\n", (char*)memchr(evil_revalpha, 'a', 26));
+    fprintf(f, "\t%s\n", (char*)memchr(evil_zeros, '1', 26));
+    fprintf(f, "\t%s\n", (char*)memchr(evil_alphabet, '0', 30));
 
     // tests for memcmp
     fprintf(f, "\nmemcmp\n");
@@ -86,7 +93,11 @@ int main() {
 
     free(dma);
 
-    
+    // tests for strchr
+    fprintf(f, "\nmemchr\n");
+    fprintf(f, "\t%s\n", (char *)memchr(alphabet, 'a', 26));
+    fprintf(f, "\t%s\n", (char *)memchr(alphabet, 'm', 26));
+    fprintf(f, "\t%s\n", (char *)memchr(alphabet, 'z', 26));
 
     fclose(f);
     return 0;
