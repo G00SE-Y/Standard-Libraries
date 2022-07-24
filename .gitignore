@@ -1,4 +1,0 @@
-*.exe
-/string.h_lib/output
-/string.h_lib/.vscode
-/string.h_lib/string_test_results.txt
