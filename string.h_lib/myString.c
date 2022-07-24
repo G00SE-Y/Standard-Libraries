@@ -187,20 +187,18 @@ char *strchr(const char *str, int c) {
  */
 int strcmp(const char *str1, const char *str2) {
 
-    int diff = 0;
-    char x, y;
+    int x, y;
 
-    for (size_t i = 0; x != 0 || x != 0; i++) {
+    for (size_t i = 0; x != 0 && x != 0; i++) {
         x = str1[i];
         y = str2[i];
 
-        if (x == 0 || y == 0)
-            return ((x == 0) ? -1 : 1);
-
-        diff += x - y;
+        if (x < y) return -1;
+        else if (x > y) return 1;
     }
 
-    return ((diff > 0) ? 1 : -1);
+    if(x == 0 && y == 0) return 0;
+    return (x == 0)? -1 : 1;
 }
 
 /*
@@ -208,21 +206,18 @@ int strcmp(const char *str1, const char *str2) {
  */
 int strncmp(const char *str1, const char *str2, size_t n) {
 
-    int diff = 0;
-    char x, y;
+    int x, y;
 
-    for (size_t i = 0; (x != 0 || x != 0) && i < n; i++)
-    {
+    for (size_t i = 0; (x != 0 && x != 0) && i < n; i++) {
         x = str1[i];
         y = str2[i];
 
-        if (x == 0 || y == 0)
-            return ((x == 0) ? -1 : 1);
-
-        diff += x - y;
+        if (x < y) return -1;
+        else if (y < x) return 1;
     }
 
-    return ((diff > 0) ? 1 : -1);
+    if (x == 0 && y == 0) return 0;
+    return (x == 0) ? 1 : -1;
 }
 
 /*
@@ -230,9 +225,14 @@ int strncmp(const char *str1, const char *str2, size_t n) {
  */
 char* strcpy(char *dest, const char *src) {
 
-    if(int i = 0; src != 0; i++) {
+    char* tmp = dest;
+    int i;
+
+    for(i = 0; src[i] != 0; i++) {
         dest[i] = src[i];
     }
+    dest[i] = 0;
 
-    return dest;
+    return tmp;
 }
+

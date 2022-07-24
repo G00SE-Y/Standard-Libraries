@@ -112,6 +112,18 @@ int main() {
     fprintf(f, "\t%d\n", strncmp(alphabet, "a", 26));
     fprintf(f, "\t%d\n", strncmp("z", revalpha, 26));
 
+    // * tests for strcpy
+    fprintf(f, "\nstrcpy\n");
+
+    dma = (char *)malloc(50);
+
+    fprintf(f, "\t%s\n", strcpy(dma, alphabet));
+    fprintf(f, "\t%s\n", strcpy(dma, revalpha));
+    fprintf(f, "\t%s\n", strcpy(dma, zeros));
+    fprintf(f, "\t%s\n", strcpy(dma, byte69));
+
+    free(dma);
+
     fclose(f);
     return 0;
 }
