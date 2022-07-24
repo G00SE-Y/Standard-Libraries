@@ -91,18 +91,26 @@ int main() {
     free(dma);
 
     // * tests for strchr
-    fprintf(f, "\nmemchr\n");
+    fprintf(f, "\nstrchr\n");
     fprintf(f, "\t%s\n", (char *)memchr(alphabet, 'a', 26));
     fprintf(f, "\t%s\n", (char *)memchr(alphabet, 'm', 26));
     fprintf(f, "\t%s\n", (char *)memchr(alphabet, 'z', 26));
 
     // * tests for strcmp
     fprintf(f, "\nstrcmp\n");
-    fprintf(f, "\t%d\n", memcmp(alphabet, alphabet, 26));
-    fprintf(f, "\t%d\n", memcmp(alphabet, zeros, 26));
-    fprintf(f, "\t%d\n", memcmp(alphabet, revalpha, 26));
-    fprintf(f, "\t%d\n", memcmp(alphabet, "a", 26));
-    fprintf(f, "\t%d\n", memcmp("z", revalpha, 26));
+    fprintf(f, "\t%d\n", strcmp(alphabet, alphabet));
+    fprintf(f, "\t%d\n", strcmp(alphabet, zeros));
+    fprintf(f, "\t%d\n", strcmp(alphabet, revalpha));
+    fprintf(f, "\t%d\n", strcmp(alphabet, "a"));
+    fprintf(f, "\t%d\n", strcmp("z", revalpha));
+
+    // * tests for strncmp
+    fprintf(f, "\nstrncmp\n");
+    fprintf(f, "\t%d\n", strncmp(alphabet, alphabet, 26));
+    fprintf(f, "\t%d\n", strncmp(alphabet, zeros, 26));
+    fprintf(f, "\t%d\n", strncmp(alphabet, revalpha, 26));
+    fprintf(f, "\t%d\n", strncmp(alphabet, "a", 26));
+    fprintf(f, "\t%d\n", strncmp("z", revalpha, 26));
 
     fclose(f);
     return 0;
