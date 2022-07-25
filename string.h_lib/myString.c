@@ -6,25 +6,6 @@
 #define size_t unsigned long long
 #define errno_t int
 
-void *memchr(const void* str, int c, size_t n);
-int memcmp(const void* str1, const void* str2, size_t n);
-void *memcpy(void* dest, const void* src, size_t n);
-void *memmove(void* dest, const void* src, size_t n);
-void *memset(void* str, int c, size_t n);
-char *strcat(char* dest, const char* src);
-char *strncat(char* dest, const char* src, size_t n);
-char *strchr(const char* str, int c);
-int strcmp(const char* str1, const char* str2);
-int strncmp(const char* str1, const char* str2, size_t n);
-int strcoll(const char* str1, const char* str2);
-char *strcpy(char* dest, const char* src);
-char *strncpy(char* dest, const char* src, size_t n);
-size_t strcspn(const char* str1, const char* str2);
-size_t strspn(const char* str1, const char* str2);
-char *strerror(int errnum);
-size_t strlen(const char* str);
-char *strpbrk(const char* str1, const char* str2); // Finds the first character in the string str1 that matches any character specified in str2.
-// char *strrchr(const char* str, int c); // Searches for the last occurrence of the character c (an unsigned char) in the string pointed to by the argument str.
 // char *strstr(const char* haystack, const char* needle); // Finds the first occurrence of the entire string needle (not including the terminating null character) which appears in the string haystack.
 // char *strtok(char* str, const char* delim); // Breaks string str into a series of tokens separated by delim.
 // size_t strxfrm(char* dest, const char* src, size_t n); // Transforms the first n characters of the string src into current locale and places them in the string dest.
@@ -380,7 +361,9 @@ size_t strlen(const char* str){
  * Finds the first character in the string str1 that matches any character specified in str2.
  */
 char *strpbrk(const char* str1, const char* str2) {
+
     char* ret = (char*)str1;
+
     while(*ret != 0) {
         for(size_t i = 0; str2[i] != 0; i++) {
             if(*ret == str2[i]) return ret;
@@ -388,4 +371,22 @@ char *strpbrk(const char* str1, const char* str2) {
         ret++;
     }
     return null;
+}
+
+/* 
+ * Searches for the last occurrence of the character c (an unsigned char) in the string pointed to by the argument str.
+ */
+char *strrchr(const char* str, int c) {
+
+    size_t pos = 0, i;
+    int found = 0;
+
+    for(i = 0; str[i] != 0; i++) {
+        if( str[i] == c) {
+            found = 1;
+            pos = i;
+        }
+    }
+
+    return (found)? (char*)(str + pos) : null;
 }

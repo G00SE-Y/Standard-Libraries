@@ -176,6 +176,14 @@ int main() {
     fprintf(f, "\t%s\n", strpbrk(zeros, "12345\0"));
     fprintf(f, "\t%s\n", strpbrk(byte420, "1\0"));
 
+    // * tests for strrchr
+    fprintf(f, "\nstrrchr\n");
+    fprintf(f, "\t%s\n", strrchr(alphabet, 'a'));
+    fprintf(f, "\t%s\n", strrchr(alphabet, 'm'));
+    fprintf(f, "\t%s\n", strrchr(alphabet, 'z'));
+    fprintf(f, "\t%s\n", strrchr(zeros, '0'));
+    fprintf(f, "\t%s\n", strrchr(zeros, '1'));
+
     fclose(f);
     return 0;
 }
