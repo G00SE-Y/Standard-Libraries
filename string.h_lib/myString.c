@@ -21,8 +21,8 @@ char *strcpy(char* dest, const char* src);
 char *strncpy(char* dest, const char* src, size_t n);
 size_t strcspn(const char* str1, const char* str2);
 size_t strspn(const char* str1, const char* str2);
-char *strerror(int errnum); // Searches an internal array for the error number errnum and returns a pointer to an error message string.
-// size_t strlen(const char* str); // Computes the length of the string str up to but not including the terminating null character.
+char *strerror(int errnum);
+size_t strlen(const char* str);
 // char *strpbrk(const char* str1, const char* str2); // Finds the first character in the string str1 that matches any character specified in str2.
 // char *strrchr(const char* str, int c); // Searches for the last occurrence of the character c (an unsigned char) in the string pointed to by the argument str.
 // char *strstr(const char* haystack, const char* needle); // Finds the first occurrence of the entire string needle (not including the terminating null character) which appears in the string haystack.
@@ -304,101 +304,74 @@ size_t strspn(const char* str1, const char* str2) {
 
     return count;
 }
+ /* 
+  * global error message array used by strerror() 
+  */
+char* error_msgs[] = {
+"No error",
+"Operation not permitted",
+"No such file or directory",
+"No such process",
+"Interrupted function call",
+"Input/output error",
+"No such device or address",
+"Arg list too long",
+"Exec format error",
+"Bad file descriptor",
+"No child processes",
+"Resource temporarily unavailable",
+"Not enough space",
+"Permission denied",
+"Bad address",
+"Unknown error",
+"Resource device",
+"File exists",
+"Improper link",
+"No such device",
+"Not a directory",
+"Is a directory",
+"Invalid argument",
+"Too many open files in system",
+"Too many open files",
+"Inappropriate I/O control operation",
+"Unknown error",
+"File too large",
+"No space left on device",
+"Invalid seek",
+"Read-only file system",
+"Too many links",
+"Broken pipe",
+"Domain error",
+"Result too large",
+"Unknown error",
+"Resource deadlock avoided",
+"Unknown error",
+"Filename too long",
+"No locks available",
+"Function not implemented",
+"Directory not empty",
+"Illegal byte sequence",
+"Unknown error"
+};
 
 /* 
  * Searches an internal array for the error number errnum and returns a pointer to an error message string.
  */
 char *strerror(int errnum){
-    
-    switch(errnum) {
-        case 0:
-            return "No error";
-        case 1:
-            return "Operation not permitted";
-        case 2:
-            return "No such file or directory";
-        case 3:
-            return "No such process";
-        case 4:
-            return "Interrupted function call";
-        case 5:
-            return "Input/output error";
-        case 6:
-            return "No such device or address";
-        case 7:
-            return "Arg list too long";
-        case 8:
-            return "Exec format error";
-        case 9:
-            return "Bad file descriptor";
-        case 10:
-            return "No child processes";
-        case 11:
-            return "Resource temporarily unavailable";
-        case 12:
-            return "Not enough space";
-        case 13:
-            return "Permission denied";
-        case 14:
-            return "Bad address";
-        case 15:
-            return "Unknown error";
-        case 16:
-            return "Resource device";
-        case 17:
-            return "File exists";
-        case 18:
-            return "Improper link";
-        case 19:
-            return "No such device";
-        case 20:
-            return "Not a directory";
-        case 21:
-            return "Is a directory";
-        case 22:
-            return "Invalid argument";
-        case 23:
-            return "Too many open files in system";
-        case 24:
-            return "Too many open files";
-        case 25:
-            return "Inappropriate I/O control operation";
-        case 26:
-            return "Unknown error";
-        case 27:
-            return "File too large";
-        case 28:
-            return "No space left on device";
-        case 29:
-            return "Invalid seek";
-        case 30:
-            return "Read-only file system";
-        case 31:
-            return "Too many links";
-        case 32:
-            return "Broken pipe";
-        case 33:
-            return "Domain error";
-        case 34:
-            return "Result too large";
-        case 35:
-            return "Unknown error";
-        case 36:
-            return "Resource deadlock avoided";
-        case 37:
-            return "Unknown error";
-        case 38:
-            return "Filename too long";
-        case 39:
-            return "No locks available";
-        case 40:
-            return "Function not implemented";
-        case 41:
-            return "Directory not empty";
-        case 42:
-            return "Illegal byte sequence";
-        default:
-            return "Unknown error";
-    }
 
+    if(errnum < 0 || errnum > 42) return error_msgs[43];
+    else return error_msgs[errnum];
+
+}
+
+/* 
+ * Computes the length of the string str up to but not including the terminating null character.
+ */
+size_t strlen(const char* str){
+
+    int len = 0;
+
+    while(str[len] != 0) len++;
+
+    return len;
 }

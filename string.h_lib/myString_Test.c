@@ -162,6 +162,13 @@ int main() {
         fprintf(f, "\t%s\n", strerror(x));
     }
 
+    // * tests for strlen
+    fprintf(f, "\nstrerror\n");
+    fprintf(f, "\t%lld\n", strlen(alphabet));
+    fprintf(f, "\t%lld\n", strlen(revalpha));
+    fprintf(f, "\t%lld\n", strlen(zeros));
+    fprintf(f, "\t%lld\n", strlen(byte87));
+
     fclose(f);
     return 0;
 }
