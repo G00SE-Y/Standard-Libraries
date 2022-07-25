@@ -18,13 +18,13 @@ int strcmp(const char* str1, const char* str2);
 int strncmp(const char* str1, const char* str2, size_t n);
 int strcoll(const char* str1, const char* str2);
 char *strcpy(char* dest, const char* src);
-char *strncpy(char* dest, const char* src, size_t n); // Copies up to n characters from the string pointed to, by src to dest.
-// size_t strcspn(const char* str1, const char* str2); // Calculates the length of the initial segment of str1 which consists entirely of characters not in str2.
+char *strncpy(char* dest, const char* src, size_t n);
+size_t strcspn(const char* str1, const char* str2); // Calculates the length of the initial segment of str1 which consists entirely of characters not in str2.
+// size_t strspn(const char* str1, const char* str2); // Calculates the length of the initial segment of str1 which consists entirely of characters in str2.
 // char *strerror(int errnum); // Searches an internal array for the error number errnum and returns a pointer to an error message string.
 // size_t strlen(const char* str); // Computes the length of the string str up to but not including the terminating null character.
 // char *strpbrk(const char* str1, const char* str2); // Finds the first character in the string str1 that matches any character specified in str2.
 // char *strrchr(const char* str, int c); // Searches for the last occurrence of the character c (an unsigned char) in the string pointed to by the argument str.
-// size_t strspn(const char* str1, const char* str2); // Calculates the length of the initial segment of str1 which consists entirely of characters in str2.
 // char *strstr(const char* haystack, const char* needle); // Finds the first occurrence of the entire string needle (not including the terminating null character) which appears in the string haystack.
 // char *strtok(char* str, const char* delim); // Breaks string str into a series of tokens separated by delim.
 // size_t strxfrm(char* dest, const char* src, size_t n); // Transforms the first n characters of the string src into current locale and places them in the string dest.
@@ -253,4 +253,54 @@ char *strncpy(char *dest, const char *src, size_t n) {
     // dest[i] = 0;
 
     return tmp;
+}
+
+/* 
+ * Calculates the length of the initial segment of str1 which consists entirely of characters not in str2.
+ */
+size_t strcspn(const char* str1, const char* str2) {
+    
+    size_t count = 0;
+
+    for(int i = 0; str1[i] != 0; i++) {
+
+        int found = 0;
+
+        for(int j = 0; str2[j] != 0; j++) {
+            if(str1[i] == str2[j]) {
+                found++;
+                break;
+            }
+        }
+
+        if(found) break;
+        else count++;
+    }
+
+    return count;
+}
+
+/* 
+ * Calculates the length of the initial segment of str1 which consists entirely of characters not in str2.
+ */
+size_t strspn(const char* str1, const char* str2) {
+    
+    size_t count = 0;
+
+    for(int i = 0; str1[i] != 0; i++) {
+
+        int found = 0;
+
+        for(int j = 0; str2[j] != 0; j++) {
+            if(str1[i] == str2[j]) {
+                found++;
+                break;
+            }
+        }
+
+        if(!found) break;
+        else count++;
+    }
+
+    return count;
 }

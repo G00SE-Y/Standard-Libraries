@@ -17,10 +17,10 @@ int main() {
     const char mrevalpha[] = "zyxwvutsrqponmlkjihgfedcba";
     const char zeros[] = "00000000000000000000000000\0";
     const char mzeros[] = "00000000000000000000000000";
-    const char byte69[] = "00100101";
-    const char byte420[] = "11010100";
-    const char byte87[] = "01010111";
-    const char byte25[] = "00011001";
+    const char byte69[] =  "00100101\0";
+    const char byte420[] = "11010100\0";
+    const char byte87[] =  "01010111\0";
+    const char byte25[] =  "00011001\0";
     char test[] = "00000000000000000000000000\0";
 
     // * tests for memchr
@@ -139,6 +139,22 @@ int main() {
     fprintf(f, "\t%s\n", dma);
 
     free(dma);
+
+    // * tests for strcspn
+    fprintf(f, "\nstrcspn\n");
+    fprintf(f, "\t%lld\n", strcspn(byte69, zeros));
+    fprintf(f, "\t%lld\n", strcspn(byte420, zeros));
+    fprintf(f, "\t%lld\n", strcspn(byte87, zeros));
+    fprintf(f, "\t%lld\n", strcspn(byte25, zeros));
+    fprintf(f, "\t%lld\n", strcspn(alphabet, "ebdac\0"));
+
+    // * tests for strspn
+    fprintf(f, "\nstrspn\n");
+    fprintf(f, "\t%lld\n", strspn(byte69, zeros));
+    fprintf(f, "\t%lld\n", strspn(byte420, zeros));
+    fprintf(f, "\t%lld\n", strspn(byte87, zeros));
+    fprintf(f, "\t%lld\n", strspn(byte25, zeros));
+    fprintf(f, "\t%lld\n", strspn(alphabet, "ebdac\0"));
 
     fclose(f);
     return 0;
