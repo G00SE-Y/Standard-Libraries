@@ -69,7 +69,6 @@ int main() {
 
     free(dma);
 
-
     // * tests for strncat
     fprintf(f, "\nstrcat\n");
 
@@ -114,7 +113,6 @@ int main() {
 
     // * tests for strcpy
     fprintf(f, "\nstrcpy\n");
-
     dma = (char *)calloc(50,1);
 
     fprintf(f, "\t%s\n", strcpy(dma, alphabet));
