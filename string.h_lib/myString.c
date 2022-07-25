@@ -16,9 +16,9 @@ char *strncat(char* dest, const char* src, size_t n);
 char *strchr(const char* str, int c);
 int strcmp(const char* str1, const char* str2);
 int strncmp(const char* str1, const char* str2, size_t n);
-int strcoll(const char* str1, const char* str2); // Compares string str1 to str2. The result is dependent on the LC_COLLATE setting of the location.
-char *strcpy(char* dest, const char* src); // Copies the string pointed to, by src to dest.
-// char *strncpy(char* dest, const char* src, size_t n); // Copies up to n characters from the string pointed to, by src to dest.
+int strcoll(const char* str1, const char* str2);
+char *strcpy(char* dest, const char* src);
+char *strncpy(char* dest, const char* src, size_t n); // Copies up to n characters from the string pointed to, by src to dest.
 // size_t strcspn(const char* str1, const char* str2); // Calculates the length of the initial segment of str1 which consists entirely of characters not in str2.
 // char *strerror(int errnum); // Searches an internal array for the error number errnum and returns a pointer to an error message string.
 // size_t strlen(const char* str); // Computes the length of the string str up to but not including the terminating null character.
@@ -201,6 +201,7 @@ int strcmp(const char *str1, const char *str2) {
     return (x == 0)? -1 : 1;
 }
 
+
 /*
  * Compares at most the first n bytes of str1 and str2.
  */
@@ -220,6 +221,7 @@ int strncmp(const char *str1, const char *str2, size_t n) {
     return (x == 0) ? 1 : -1;
 }
 
+
 /*
  * Copies the string pointed to, by src to dest. (unsafe)
  */
@@ -236,3 +238,19 @@ char* strcpy(char *dest, const char *src) {
     return tmp;
 }
 
+
+/*
+ * Copies up to n characters from the string pointed to, by src to dest.
+ */
+char *strncpy(char *dest, const char *src, size_t n) {
+
+    char* tmp = dest;
+    size_t i;
+
+    for(i = 0; src[i] != 0 && i < n; i++) {
+        dest[i] = src[i];
+    }
+    // dest[i] = 0;
+
+    return tmp;
+}

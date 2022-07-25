@@ -52,7 +52,7 @@ int main() {
 
     // * tests for strcat
     fprintf(f, "\nstrcat\n");
-    char* dma = (char*)malloc((4 * 8) + 1);
+    char* dma = (char*)calloc((4 * 8) + 1, 1);
     *dma = 0;
 
     dma = (char *)strcat(dma, byte69);
@@ -73,7 +73,7 @@ int main() {
     // * tests for strncat
     fprintf(f, "\nstrcat\n");
 
-    dma = (char *)malloc((8 + 6 + 4 + 2) + 1);
+    dma = (char *)calloc((8 + 6 + 4 + 2) + 1, 1);
     *dma = 0;
 
     dma = (char *)strncat(dma, byte69, 8);
@@ -115,12 +115,30 @@ int main() {
     // * tests for strcpy
     fprintf(f, "\nstrcpy\n");
 
-    dma = (char *)malloc(50);
+    dma = (char *)calloc(50,1);
 
     fprintf(f, "\t%s\n", strcpy(dma, alphabet));
     fprintf(f, "\t%s\n", strcpy(dma, revalpha));
     fprintf(f, "\t%s\n", strcpy(dma, zeros));
     fprintf(f, "\t%s\n", strcpy(dma, byte69));
+
+    free(dma);
+
+    // * tests for strncpy
+    fprintf(f, "\nstrncpy\n");
+    dma = (char*)calloc(50,1);
+
+    strncpy(dma, alphabet, 5);
+    fprintf(f, "\t%s\n", dma);
+
+    strncpy(dma+5, revalpha, 5);
+    fprintf(f, "\t%s\n", dma);
+
+    strncpy(dma+10, zeros, 5);
+    fprintf(f, "\t%s\n", dma);
+
+    strncpy(dma+15, byte69, 4);
+    fprintf(f, "\t%s\n", dma);
 
     free(dma);
 
