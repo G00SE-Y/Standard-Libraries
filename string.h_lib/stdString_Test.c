@@ -184,6 +184,14 @@ int main() {
     fprintf(f, "\t%s\n", strrchr(zeros, '0'));
     fprintf(f, "\t%s\n", strrchr(zeros, '1'));
 
+    // * tests for strstr
+    fprintf(f, "\nstrstr\n");
+    fprintf(f, "\t%s\n", strstr(alphabet, "abc"));
+    fprintf(f, "\t%s\n", strstr(alphabet, "xyz"));
+    fprintf(f, "\t%s\n", strstr(alphabet, "yza"));
+    fprintf(f, "\t%s\n", strstr(zeros, "1"));
+    fprintf(f, "\t%s\n", strstr(zeros, ""));
+
     fclose(f);
     return 0;
 }

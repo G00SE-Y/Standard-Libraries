@@ -395,18 +395,22 @@ char *strrchr(const char* str, int c) {
  */
 char *strstr(const char* haystack, const char* needle){
 
-    size_t i, j;
+    size_t i, j, pos;
     int found = 0;
     
     for(i = 0; haystack[i] != 0; i++) {
-        for(j = 0; needle[j] != 0; j++) {
+        if(haystack[i] == needle[0]) {
+            pos = i;
 
-            if(haystack[i] == needle[j] && needle[j+1] == 0) found = 1;
-            else if(haystack[i] != needle[j]) break;
+            for(j = 0; needle[j] != 0; j++, i++) {
+
+                if(haystack[i] == needle[j] && needle[j+1] == 0) found = 1;
+                else if(haystack[i] != needle[j]) break;
+            }
         }
 
         if (found) break;
     }
 
-    return (found)? (char*)(haystack + i) : null;
+    return (found)? (char*)(haystack + pos) : null;
 }
