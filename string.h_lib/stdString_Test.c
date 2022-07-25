@@ -156,6 +156,12 @@ int main() {
     fprintf(f, "\t%lld\n", strspn(byte25, zeros));
     fprintf(f, "\t%lld\n", strspn(alphabet, "ebdac\0"));
 
+        // * tests for strerror
+    fprintf(f, "\nstrerror\n");
+    for(int x = 0; x < sys_nerr + 1; x++ ) {
+        fprintf(f, "%3d: %s\n",x,strerror(x));
+    }
+
     fclose(f);
     return 0;
 }

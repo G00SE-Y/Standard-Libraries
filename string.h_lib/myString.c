@@ -19,9 +19,9 @@ int strncmp(const char* str1, const char* str2, size_t n);
 int strcoll(const char* str1, const char* str2);
 char *strcpy(char* dest, const char* src);
 char *strncpy(char* dest, const char* src, size_t n);
-size_t strcspn(const char* str1, const char* str2); // Calculates the length of the initial segment of str1 which consists entirely of characters not in str2.
-// size_t strspn(const char* str1, const char* str2); // Calculates the length of the initial segment of str1 which consists entirely of characters in str2.
-// char *strerror(int errnum); // Searches an internal array for the error number errnum and returns a pointer to an error message string.
+size_t strcspn(const char* str1, const char* str2);
+size_t strspn(const char* str1, const char* str2);
+char *strerror(int errnum); // Searches an internal array for the error number errnum and returns a pointer to an error message string.
 // size_t strlen(const char* str); // Computes the length of the string str up to but not including the terminating null character.
 // char *strpbrk(const char* str1, const char* str2); // Finds the first character in the string str1 that matches any character specified in str2.
 // char *strrchr(const char* str, int c); // Searches for the last occurrence of the character c (an unsigned char) in the string pointed to by the argument str.
@@ -298,9 +298,107 @@ size_t strspn(const char* str1, const char* str2) {
             }
         }
 
-        if(!found) break;
+        if(!found) break; // ? only difference between strcspn and strspn
         else count++;
     }
 
     return count;
+}
+
+/* 
+ * Searches an internal array for the error number errnum and returns a pointer to an error message string.
+ */
+char *strerror(int errnum){
+    
+    switch(errnum) {
+        case 0:
+            return "No error";
+        case 1:
+            return "Operation not permitted";
+        case 2:
+            return "No such file or directory";
+        case 3:
+            return "No such process";
+        case 4:
+            return "Interrupted function call";
+        case 5:
+            return "Input/output error";
+        case 6:
+            return "No such device or address";
+        case 7:
+            return "Arg list too long";
+        case 8:
+            return "Exec format error";
+        case 9:
+            return "Bad file descriptor";
+        case 10:
+            return "No child processes";
+        case 11:
+            return "Resource temporarily unavailable";
+        case 12:
+            return "Not enough space";
+        case 13:
+            return "Permission denied";
+        case 14:
+            return "Bad address";
+        case 15:
+            return "Unknown error";
+        case 16:
+            return "Resource device";
+        case 17:
+            return "File exists";
+        case 18:
+            return "Improper link";
+        case 19:
+            return "No such device";
+        case 20:
+            return "Not a directory";
+        case 21:
+            return "Is a directory";
+        case 22:
+            return "Invalid argument";
+        case 23:
+            return "Too many open files in system";
+        case 24:
+            return "Too many open files";
+        case 25:
+            return "Inappropriate I/O control operation";
+        case 26:
+            return "Unknown error";
+        case 27:
+            return "File too large";
+        case 28:
+            return "No space left on device";
+        case 29:
+            return "Invalid seek";
+        case 30:
+            return "Read-only file system";
+        case 31:
+            return "Too many links";
+        case 32:
+            return "Broken pipe";
+        case 33:
+            return "Domain error";
+        case 34:
+            return "Result too large";
+        case 35:
+            return "Unknown error";
+        case 36:
+            return "Resource deadlock avoided";
+        case 37:
+            return "Unknown error";
+        case 38:
+            return "Filename too long";
+        case 39:
+            return "No locks available";
+        case 40:
+            return "Function not implemented";
+        case 41:
+            return "Directory not empty";
+        case 42:
+            return "Illegal byte sequence";
+        default:
+            return "Unknown error";
+    }
+
 }
