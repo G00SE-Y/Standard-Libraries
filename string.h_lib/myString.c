@@ -6,7 +6,6 @@
 #define size_t unsigned long long
 #define errno_t int
 
-// char *strstr(const char* haystack, const char* needle); // Finds the first occurrence of the entire string needle (not including the terminating null character) which appears in the string haystack.
 // char *strtok(char* str, const char* delim); // Breaks string str into a series of tokens separated by delim.
 // size_t strxfrm(char* dest, const char* src, size_t n); // Transforms the first n characters of the string src into current locale and places them in the string dest.
 
@@ -389,4 +388,25 @@ char *strrchr(const char* str, int c) {
     }
 
     return (found)? (char*)(str + pos) : null;
+}
+
+/* 
+ * Finds the first occurrence of the entire string needle (not including the terminating null character) which appears in the string haystack.
+ */
+char *strstr(const char* haystack, const char* needle){
+
+    size_t i, j;
+    int found = 0;
+    
+    for(i = 0; haystack[i] != 0; i++) {
+        for(j = 0; needle[j] != 0; j++) {
+
+            if(haystack[i] == needle[j] && needle[j+1] == 0) found = 1;
+            else if(haystack[i] != needle[j]) break;
+        }
+
+        if (found) break;
+    }
+
+    return (found)? (char*)(haystack + i) : null;
 }
