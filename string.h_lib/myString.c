@@ -6,7 +6,6 @@
 #define size_t unsigned long long
 #define errno_t int
 
-// char *strtok(char* str, const char* delim); // Breaks string str into a series of tokens separated by delim.
 // size_t strxfrm(char* dest, const char* src, size_t n); // Transforms the first n characters of the string src into current locale and places them in the string dest.
 
 /* EXTENSIONS REFERENCE MATERIAL
@@ -414,3 +413,38 @@ char *strstr(const char* haystack, const char* needle){
 
     return (found)? (char*)(haystack + pos) : null;
 }
+
+
+char* prev_ptr = null; // ? keeps a pointer to the last used str in strtok()
+
+/* 
+ * Breaks string str into a series of tokens separated by delim. 
+ * The delim array is treated as an array of single character tokens
+ */
+char *strtok(char* str, const char* delim) {
+
+    if(str != null) prev_ptr = str;
+    else if(prev_ptr == null) return null;
+
+    char* cur_ptr = prev_ptr; // ? tracks the current token's start position
+
+    for( ; *prev_ptr != 0; prev_ptr++) {
+        for(size_t i = 0; delim[i] != 0; i++) {
+
+            if(*prev_ptr == delim[i]) {
+
+                *prev_ptr = 0;
+                prev_ptr++;
+                return cur_ptr;
+            }
+            else if(*(prev_ptr + 1) == 0) {
+                prev_ptr = null;
+                return cur_ptr;
+            }
+        }
+    }
+
+    return null;
+
+}
+

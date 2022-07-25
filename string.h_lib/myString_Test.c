@@ -22,6 +22,7 @@ int main() {
     const char byte87[] =  "01010111\0";
     const char byte25[] =  "00011001\0";
     char test[] = "00000000000000000000000000\0"; // different from zeros because it's not const
+    char sentence[] = "He kills the people he once saved.\0";
 
     // * tests for memchr
     fprintf(f, "\nmemchr\n");
@@ -191,6 +192,21 @@ int main() {
     fprintf(f, "\t%s\n", strstr(alphabet, "yza"));
     fprintf(f, "\t%s\n", strstr(zeros, "1"));
     fprintf(f, "\t%s\n", strstr(zeros, ""));
+
+    // * tests for strtok
+    fprintf(f, "\nstrtok\n");
+    char d[] = " ";
+
+    char* p = strtok(sentence, d);
+    while(p != null) {
+        fprintf(f, "\t%s\n", p);
+        p = strtok(null, d);
+    }
+    fprintf(f, "\t%s\n", p);
+    p = strtok(NULL, d);
+    
+    p = strtok(sentence, d);
+    fprintf(f, "\t%s\n", p);
 
     fclose(f);
     return 0;
