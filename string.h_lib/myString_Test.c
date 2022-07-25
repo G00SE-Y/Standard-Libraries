@@ -163,11 +163,18 @@ int main() {
     }
 
     // * tests for strlen
-    fprintf(f, "\nstrerror\n");
+    fprintf(f, "\nstrlen\n");
     fprintf(f, "\t%lld\n", strlen(alphabet));
     fprintf(f, "\t%lld\n", strlen(revalpha));
     fprintf(f, "\t%lld\n", strlen(zeros));
     fprintf(f, "\t%lld\n", strlen(byte87));
+
+    // * tests for strpbrk
+    fprintf(f, "\nstrpbrk\n");
+    fprintf(f, "\t%s\n", strpbrk(alphabet, "xyz\0"));
+    fprintf(f, "\t%s\n", strpbrk(revalpha, "pfr\0"));
+    fprintf(f, "\t%s\n", strpbrk(zeros, "12345\0"));
+    fprintf(f, "\t%s\n", strpbrk(byte420, "1\0"));
 
     fclose(f);
     return 0;

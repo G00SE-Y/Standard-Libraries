@@ -23,7 +23,7 @@ size_t strcspn(const char* str1, const char* str2);
 size_t strspn(const char* str1, const char* str2);
 char *strerror(int errnum);
 size_t strlen(const char* str);
-// char *strpbrk(const char* str1, const char* str2); // Finds the first character in the string str1 that matches any character specified in str2.
+char *strpbrk(const char* str1, const char* str2); // Finds the first character in the string str1 that matches any character specified in str2.
 // char *strrchr(const char* str, int c); // Searches for the last occurrence of the character c (an unsigned char) in the string pointed to by the argument str.
 // char *strstr(const char* haystack, const char* needle); // Finds the first occurrence of the entire string needle (not including the terminating null character) which appears in the string haystack.
 // char *strtok(char* str, const char* delim); // Breaks string str into a series of tokens separated by delim.
@@ -228,7 +228,7 @@ int strncmp(const char *str1, const char *str2, size_t n) {
 char* strcpy(char *dest, const char *src) {
 
     char* tmp = dest;
-    int i;
+    size_t i;
 
     for(i = 0; src[i] != 0; i++) {
         dest[i] = src[i];
@@ -262,11 +262,11 @@ size_t strcspn(const char* str1, const char* str2) {
     
     size_t count = 0;
 
-    for(int i = 0; str1[i] != 0; i++) {
+    for(size_t i = 0; str1[i] != 0; i++) {
 
         int found = 0;
 
-        for(int j = 0; str2[j] != 0; j++) {
+        for(size_t j = 0; str2[j] != 0; j++) {
             if(str1[i] == str2[j]) {
                 found++;
                 break;
@@ -287,11 +287,11 @@ size_t strspn(const char* str1, const char* str2) {
     
     size_t count = 0;
 
-    for(int i = 0; str1[i] != 0; i++) {
+    for(size_t i = 0; str1[i] != 0; i++) {
 
         int found = 0;
 
-        for(int j = 0; str2[j] != 0; j++) {
+        for(size_t j = 0; str2[j] != 0; j++) {
             if(str1[i] == str2[j]) {
                 found++;
                 break;
@@ -369,9 +369,23 @@ char *strerror(int errnum){
  */
 size_t strlen(const char* str){
 
-    int len = 0;
+    size_t len = 0;
 
     while(str[len] != 0) len++;
 
     return len;
+}
+
+/*
+ * Finds the first character in the string str1 that matches any character specified in str2.
+ */
+char *strpbrk(const char* str1, const char* str2) {
+    char* ret = (char*)str1;
+    while(*ret != 0) {
+        for(size_t i = 0; str2[i] != 0; i++) {
+            if(*ret == str2[i]) return ret;
+        }
+        ret++;
+    }
+    return null;
 }
