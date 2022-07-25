@@ -159,7 +159,7 @@ int main() {
     // * tests for strerror
     fprintf(f, "\nstrerror\n");
     for(int x = 0; x < sys_nerr + 1; x++ ) {
-        fprintf(f, "%3d: %s\n",x,strerror(x));
+        fprintf(f, "\t%s\n", strerror(x));
     }
 
     fclose(f);
