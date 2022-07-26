@@ -7,9 +7,6 @@
 #define errno_t int
 
 
-size_t strxfrm(char *dest, const char *src, size_t n);
-size_t strxfrm(char* dest, const char* src, size_t n); // Transforms the first n characters of the string src into current locale and places them in the string dest.
-
 /* EXTENSIONS REFERENCE MATERIAL
  * https://en.wikibooks.org/wiki/C_Programming/string.h
  */
