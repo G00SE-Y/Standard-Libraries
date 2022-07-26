@@ -7,7 +7,6 @@
 #define errno_t int
 
 
-int strcoll(const char *str1, const char *str2);
 size_t strxfrm(char *dest, const char *src, size_t n);
 size_t strxfrm(char* dest, const char* src, size_t n); // Transforms the first n characters of the string src into current locale and places them in the string dest.
 
@@ -99,6 +98,7 @@ void* memmove(void *dest, const void *src, size_t n) {
     return dest;
 }
 
+
 /* 
  * Copies the character c (an unsigned char) to the first n characters of the string pointed to, by the argument str.
  */
@@ -116,6 +116,7 @@ void* memset(void* str, int c, size_t n) {
     return (void*)ptr;
 
 }
+
 
 /*
  * Appends the string pointed to, by src to the end of the string pointed to by dest. 
