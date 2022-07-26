@@ -23,6 +23,9 @@ int main() {
     const char byte25[] =  "00011001\0";
     char test[] = "00000000000000000000000000\0"; // different from zeros because it's not const
     char sentence[] = "He kills the people he once saved.\0";
+    char sentence1[] = "1111111111\0";
+    char* dma = null;
+
 
     // * tests for memchr
     fprintf(f, "\nmemchr\n");
@@ -41,19 +44,30 @@ int main() {
 
     // * tests for memcpy
     fprintf(f, "\nmemchrcpy\n");
-    fprintf(f, "\t%s\n", (char *)memcpy(test, malphabet, 26));
-    fprintf(f, "\t%s\n", (char *)memcpy(test, mrevalpha, 26));
-    fprintf(f, "\t%s\n", (char *)memcpy(test, mzeros, 26));
+    fprintf(f, "\t%s\n", (char*)memcpy(test, malphabet, 26));
+    fprintf(f, "\t%s\n", (char*)memcpy(test, mrevalpha, 26));
+    fprintf(f, "\t%s\n", (char*)memcpy(test, mzeros, 26));
 
     // * tests for memmove
     fprintf(f, "\nmemmove\n");
-    fprintf(f, "\t%s\n", (char *)memmove(test, malphabet, 26));
-    fprintf(f, "\t%s\n", (char *)memmove(test, mrevalpha, 26));
-    fprintf(f, "\t%s\n", (char *)memmove(test, mzeros, 26));
+    fprintf(f, "\t%s\n", (char*)memmove(test, malphabet, 26));
+    fprintf(f, "\t%s\n", (char*)memmove(test, mrevalpha, 26));
+    fprintf(f, "\t%s\n", (char*)memmove(test, mzeros, 26));
+
+    // * tests for memset
+    fprintf(f, "\nmemset\n");
+
+    dma = (char*)memset(sentence1, 'a', 5);
+    fprintf(f, "\t%s\n", dma);
+
+    memset(dma+5, '2', 5);
+    fprintf(f, "\t%s\n", dma);
+
+    dma = NULL;
 
     // * tests for strcat
     fprintf(f, "\nstrcat\n");
-    char* dma = (char*)calloc((4 * 8) + 1, 1);
+    dma = (char*)calloc((4 * 8) + 1, 1);
     *dma = 0;
 
     dma = (char *)strcat(dma, byte69);
@@ -92,9 +106,9 @@ int main() {
 
     // * tests for strchr
     fprintf(f, "\nstrchr\n");
-    fprintf(f, "\t%s\n", (char *)memchr(alphabet, 'a', 26));
-    fprintf(f, "\t%s\n", (char *)memchr(alphabet, 'm', 26));
-    fprintf(f, "\t%s\n", (char *)memchr(alphabet, 'z', 26));
+    fprintf(f, "\t%s\n", (char*)memchr(alphabet, 'a', 26));
+    fprintf(f, "\t%s\n", (char*)memchr(alphabet, 'm', 26));
+    fprintf(f, "\t%s\n", (char*)memchr(alphabet, 'z', 26));
 
     // * tests for strcmp
     fprintf(f, "\nstrcmp\n");

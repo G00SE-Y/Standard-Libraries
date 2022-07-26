@@ -6,7 +6,10 @@
 #define size_t unsigned long long
 #define errno_t int
 
-// size_t strxfrm(char* dest, const char* src, size_t n); // Transforms the first n characters of the string src into current locale and places them in the string dest.
+
+int strcoll(const char *str1, const char *str2);
+size_t strxfrm(char *dest, const char *src, size_t n);
+size_t strxfrm(char* dest, const char* src, size_t n); // Transforms the first n characters of the string src into current locale and places them in the string dest.
 
 /* EXTENSIONS REFERENCE MATERIAL
  * https://en.wikibooks.org/wiki/C_Programming/string.h
@@ -28,8 +31,7 @@
 /*
  * Searches for the first occurrence of the character c (an unsigned char) in the first n bytes of the string pointed to, by the argument str. 
  */
-void * memchr(const void *str, int c, size_t n)
-{
+void* memchr(const void *str, int c, size_t n) {
 
     char x = -1;
     char* loc = (char*) str;
@@ -68,11 +70,11 @@ int memcmp(const void *str1, const void *str2, size_t n) {
 /* 
  * Copies n characters from src to dest. 
  */
-void *memcpy(void *dest, const void *src, size_t n) {
+void* memcpy(void *dest, const void *src, size_t n) {
     
     for (size_t i = 0; i < n; i++)
     {
-        *(char *)(dest + i) = 0x00000000;
+        *(char *)(dest + i) = 0;
         *(char *)(dest + i) = *(char *)(dest + i) | *(char *)(src + i);
     }
 
@@ -83,25 +85,42 @@ void *memcpy(void *dest, const void *src, size_t n) {
 /* 
  * Another function to copy n characters from str2 to str1 using an intermediate buffer. (safer than memcpy) 
  */
-void *memmove(void *dest, const void *src, size_t n) {
+void* memmove(void *dest, const void *src, size_t n) {
 
     char buf = 0;
 
     for (size_t i = 0; i < n; i++)
     {
         buf = *(char *)(src + i);
-        *(char *)(dest + i) = 0x00000000;
+        *(char *)(dest + i) = 0;
         *(char *)(dest + i) = *(char *)(dest + i) | buf;
     }
 
     return dest;
 }
 
+/* 
+ * Copies the character c (an unsigned char) to the first n characters of the string pointed to, by the argument str.
+ */
+void* memset(void* str, int c, size_t n) {
+
+    if(n == 0) return str;
+    
+    char* ptr = (char*)str;
+
+    for(size_t i = 0; i < n; i++) {
+        *(char*)(ptr + i) = 0;
+        *(char*)(ptr + i) = *(char*)(ptr + i) | c;
+    }
+
+    return (void*)ptr;
+
+}
 
 /*
  * Appends the string pointed to, by src to the end of the string pointed to by dest. 
  */
-char *strcat(char *dest, const char *src) {
+char* strcat(char *dest, const char *src) {
 
     char* tmp = dest;
     size_t i = 0;
@@ -122,7 +141,7 @@ char *strcat(char *dest, const char *src) {
 /* 
  * Appends the string pointed to, by src to the end of the string pointed to, by dest up to n characters long. 
  */
-char *strncat(char *dest, const char *src, size_t n) {
+char* strncat(char *dest, const char *src, size_t n) {
 
     char *tmp = dest;
     size_t i = 0;
@@ -145,7 +164,7 @@ char *strncat(char *dest, const char *src, size_t n) {
 /* 
  * Searches for the first occurrence of the character c (an unsigned char) in the string pointed to, by the argument str. 
  */
-char *strchr(const char *str, int c) {
+char* strchr(const char *str, int c) {
 
     char x = -1;
     char *loc = (char *)str;
@@ -221,7 +240,7 @@ char* strcpy(char *dest, const char *src) {
 /*
  * Copies up to n characters from the string pointed to, by src to dest.
  */
-char *strncpy(char *dest, const char *src, size_t n) {
+char* strncpy(char *dest, const char *src, size_t n) {
 
     char* tmp = dest;
     size_t i;
@@ -283,6 +302,7 @@ size_t strspn(const char* str1, const char* str2) {
 
     return count;
 }
+
  /* 
   * global error message array used by strerror() 
   */
@@ -336,7 +356,7 @@ char* error_msgs[] = {
 /* 
  * Searches an internal array for the error number errnum and returns a pointer to an error message string.
  */
-char *strerror(int errnum){
+char* strerror(int errnum){
 
     if(errnum < 0 || errnum > 42) return error_msgs[43];
     else return error_msgs[errnum];
@@ -358,7 +378,7 @@ size_t strlen(const char* str){
 /*
  * Finds the first character in the string str1 that matches any character specified in str2.
  */
-char *strpbrk(const char* str1, const char* str2) {
+char* strpbrk(const char* str1, const char* str2) {
 
     char* ret = (char*)str1;
 
@@ -374,7 +394,7 @@ char *strpbrk(const char* str1, const char* str2) {
 /* 
  * Searches for the last occurrence of the character c (an unsigned char) in the string pointed to by the argument str.
  */
-char *strrchr(const char* str, int c) {
+char* strrchr(const char* str, int c) {
 
     size_t pos = 0, i;
     int found = 0;
@@ -392,7 +412,7 @@ char *strrchr(const char* str, int c) {
 /* 
  * Finds the first occurrence of the entire string needle (not including the terminating null character) which appears in the string haystack.
  */
-char *strstr(const char* haystack, const char* needle){
+char* strstr(const char* haystack, const char* needle){
 
     size_t i, j, pos;
     int found = 0;
@@ -421,7 +441,7 @@ char* prev_ptr = null; // ? keeps a pointer to the last used str in strtok()
  * Breaks string str into a series of tokens separated by delim. 
  * The delim array is treated as an array of single character tokens
  */
-char *strtok(char* str, const char* delim) {
+char* strtok(char* str, const char* delim) {
 
     if(str != null) prev_ptr = str;
     else if(prev_ptr == null) return null;

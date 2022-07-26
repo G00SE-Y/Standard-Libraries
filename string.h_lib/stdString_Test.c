@@ -23,13 +23,16 @@ int main() {
     const char byte25[] =  "00011001\0";
     char test[] = "00000000000000000000000000\0";
     char sentence[] = "He kills the people he once saved.\0";
+    char sentence1[] = "1111111111\0";
+    char* dma = NULL;
+
 
     // * tests for memchr
     fprintf(f, "\nmemchr\n");
-    fprintf(f, "\t%s\n", (char *)memchr(malphabet, 'a', 26));
-    fprintf(f, "\t%s\n", (char *)memchr(malphabet, 'm', 26));
-    fprintf(f, "\t%s\n", (char *)memchr(malphabet, 'z', 26));
-    fprintf(f, "\t%s\n", (char *)memchr(mzeros, '1', 26));
+    fprintf(f, "\t%s\n", (char*)memchr(malphabet, 'a', 26));
+    fprintf(f, "\t%s\n", (char*)memchr(malphabet, 'm', 26));
+    fprintf(f, "\t%s\n", (char*)memchr(malphabet, 'z', 26));
+    fprintf(f, "\t%s\n", (char*)memchr(mzeros, '1', 26));
 
     // * tests for memcmp
     fprintf(f, "\nmemcmp\n");
@@ -41,31 +44,42 @@ int main() {
 
     // * tests for memcpy
     fprintf(f, "\nmemchrcpy\n");
-    fprintf(f, "\t%s\n", (char *)memcpy(test, malphabet, 26));
-    fprintf(f, "\t%s\n", (char *)memcpy(test, mrevalpha, 26));
-    fprintf(f, "\t%s\n", (char *)memcpy(test, mzeros, 26));
+    fprintf(f, "\t%s\n", (char*)memcpy(test, malphabet, 26));
+    fprintf(f, "\t%s\n", (char*)memcpy(test, mrevalpha, 26));
+    fprintf(f, "\t%s\n", (char*)memcpy(test, mzeros, 26));
 
     // * tests for memmove
     fprintf(f, "\nmemmove\n");
-    fprintf(f, "\t%s\n", (char *)memmove(test, malphabet, 26));
-    fprintf(f, "\t%s\n", (char *)memmove(test, mrevalpha, 26));
-    fprintf(f, "\t%s\n", (char *)memmove(test, mzeros, 26));
+    fprintf(f, "\t%s\n", (char*)memmove(test, malphabet, 26));
+    fprintf(f, "\t%s\n", (char*)memmove(test, mrevalpha, 26));
+    fprintf(f, "\t%s\n", (char*)memmove(test, mzeros, 26));
+
+    // * tests for memset
+    fprintf(f, "\nmemset\n");
+
+    dma = (char*)memset(sentence1, 'a', 5);
+    fprintf(f, "\t%s\n", dma);
+
+    memset(dma+5, '2', 5);
+    fprintf(f, "\t%s\n", dma);
+
+    dma = NULL;
 
     // * tests for strcat
     fprintf(f, "\nstrcat\n");
-    char *dma = (char *)calloc((4 * 8) + 1, 1);
+    dma = (char*)calloc((4 * 8) + 1, 1);
     *dma = 0;
 
-    dma = (char *)strcat(dma, byte69);
+    dma = (char*)strcat(dma, byte69);
     fprintf(f, "\t%s\n", dma);
 
-    dma = (char *)strcat(dma, byte420);
+    dma = (char*)strcat(dma, byte420);
     fprintf(f, "\t%s\n", dma);
 
-    dma = (char *)strcat(dma, byte87);
+    dma = (char*)strcat(dma, byte87);
     fprintf(f, "\t%s\n", dma);
 
-    dma = (char *)strcat(dma, byte25);
+    dma = (char*)strcat(dma, byte25);
     fprintf(f, "\t%s\n", dma);
 
     free(dma);
@@ -73,28 +87,28 @@ int main() {
     // * tests for strncat
     fprintf(f, "\nstrcat\n");
 
-    dma = (char *)calloc((8 + 6 + 4 + 2) + 1, 1);
+    dma = (char*)calloc((8 + 6 + 4 + 2) + 1, 1);
     *dma = 0;
 
-    dma = (char *)strncat(dma, byte69, 8);
+    dma = (char*)strncat(dma, byte69, 8);
     fprintf(f, "\t%s\n", dma);
 
-    dma = (char *)strncat(dma, byte420, 6);
+    dma = (char*)strncat(dma, byte420, 6);
     fprintf(f, "\t%s\n", dma);
 
-    dma = (char *)strncat(dma, byte87, 4);
+    dma = (char*)strncat(dma, byte87, 4);
     fprintf(f, "\t%s\n", dma);
 
-    dma = (char *)strncat(dma, byte25, 2);
+    dma = (char*)strncat(dma, byte25, 2);
     fprintf(f, "\t%s\n", dma);
 
     free(dma);
 
     // * tests for strchr
     fprintf(f, "\nstrchr\n");
-    fprintf(f, "\t%s\n", (char *)memchr(alphabet, 'a', 26));
-    fprintf(f, "\t%s\n", (char *)memchr(alphabet, 'm', 26));
-    fprintf(f, "\t%s\n", (char *)memchr(alphabet, 'z', 26));
+    fprintf(f, "\t%s\n", (char*)memchr(alphabet, 'a', 26));
+    fprintf(f, "\t%s\n", (char*)memchr(alphabet, 'm', 26));
+    fprintf(f, "\t%s\n", (char*)memchr(alphabet, 'z', 26));
 
     // * tests for strcmp
     fprintf(f, "\nstrcmp\n");
